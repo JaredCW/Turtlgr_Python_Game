@@ -21,7 +21,7 @@ class SpaceshipManager():
     
     # Creating the ships
     def create_ship(self):
-        random_chance = random.randint(1, 5)
+        random_chance = random.randint(1, 50)
         if random_chance == 1:
             new_ship = Turtle("spaceship")
             new_ship.penup()
