@@ -1,3 +1,4 @@
+
 import time
 from turtle import Screen, Turtle
 # Statements to import classes from local files
@@ -29,6 +30,7 @@ screen.onkey(player.move_left, "a")
 screen.onkey(player.move_right, "Right")
 screen.onkey(player.move_right, "d")
 # TODO: Create player bounds for left/right movement
+# ! Fixed credentials???
 
 
 game_is_on = True
