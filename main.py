@@ -21,10 +21,13 @@ scoreboard = Scoreboard()
 
 # Listens for any inputs we give
 screen.listen()
-# Sets it so we run the move_method whenever the Up key is entered
-# ? Left/Right Movement?
+# Movement keys (Up/Left/Right and WASD)
 screen.onkey(player.move_forward, "Up")
 screen.onkey(player.move_forward, "w")
+screen.onkey(player.move_left, "Left")
+screen.onkey(player.move_left, "a")
+screen.onkey(player.move_right, "Right")
+screen.onkey(player.move_right, "d")
 
 
 game_is_on = True
