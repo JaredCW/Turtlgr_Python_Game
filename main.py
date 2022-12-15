@@ -28,6 +28,7 @@ screen.onkey(player.move_left, "Left")
 screen.onkey(player.move_left, "a")
 screen.onkey(player.move_right, "Right")
 screen.onkey(player.move_right, "d")
+# TODO: Create player bounds for left/right movement
 
 
 game_is_on = True
