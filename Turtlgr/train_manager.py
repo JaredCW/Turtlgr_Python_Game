@@ -24,7 +24,6 @@ class TrainManager():
             # Set the shape/size of the cars
             new_train.shapesize(stretch_wid=1, stretch_len=4)
             # changes the color of the car to a random choice from our COLORS list
-            # ! THIS IS A RANDOM CHOICE GENERATOR USE THIS DEAR GOD ASDFJKL!
             new_train.color(random.choice(COLORS))
             # generates a new care y-index location
             random_y = random.randint(-240,280)

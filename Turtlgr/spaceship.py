@@ -28,7 +28,6 @@ class SpaceshipManager():
             # Set the shape/size of the spaceships
             new_ship.shapesize(stretch_wid=2, stretch_len=1)
             # changes the color of the car to a random choice from our COLORS list
-            # ! THIS IS A RANDOM CHOICE GENERATOR USE THIS DEAR GOD ASDFJKL!
             new_ship.color(random.choice(COLORS))
             # generates a new care y-index location
             random_y = random.randint(-240,280)
