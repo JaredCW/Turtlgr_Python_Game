@@ -4,6 +4,7 @@ from turtle import Screen, Turtle
 from player import Player
 from car_manager import CarManager
 from train_manager import TrainManager
+from spaceship import SpaceshipManager
 from scoreboard import Scoreboard
 
 
@@ -15,6 +16,7 @@ screen.tracer(0) # has everything not start at 0, 0 and move to its starting pos
 player = Player()
 car_manager = CarManager()
 train_manager = TrainManager()
+spaceship_manager = SpaceshipManager()
 scoreboard = Scoreboard()
 
 # Listens for any inputs we give
@@ -35,10 +37,12 @@ while game_is_on:
     # Creates the obstacles
     car_manager.create_car()
     train_manager.create_train()
+    spaceship_manager.create_ship()
 
     # Moves the obstacles
     car_manager.move_cars()
     train_manager.move_trains()
+    spaceship_manager.move_ship()
     
     # If someone finishes, reset the level
     if player.crossed_finish():
@@ -46,8 +50,10 @@ while game_is_on:
         scoreboard.increase_level()
         car_manager.increase_speed()
         train_manager.increase_speed()
+        spaceship_manager.increase_speed()
 
     # Ends game on collision
+    # * Collsion needs more work, especially for unique polygons (ie - Spaceship)
     for car in car_manager.all_cars:
         if car.distance(player) < 19:
             game_is_on = False
@@ -55,6 +61,11 @@ while game_is_on:
 
     for train in train_manager.all_trains:
         if train.distance(player) < 19:
+            game_is_on = False
+            scoreboard.game_over()
+
+    for ship in spaceship_manager.all_spaceship:
+        if ship.distance(player) < 19:
             game_is_on = False
             scoreboard.game_over()
 
