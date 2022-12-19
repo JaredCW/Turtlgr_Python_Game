@@ -28,6 +28,10 @@ class TrainManager():
             # generates a new care y-index location
             random_y = random.randint(-240,280)
             # Has the new car go to that location, note the x-index is the same always
+            while (random_y >= 80 and random_y <= 140):
+                random_y = random.randint(-240,280)
+            else:
+                new_train.goto(300, random_y)
             new_train.goto(300, random_y)
             # Add the new car to the all_cars list
             self.all_trains.append(new_train)

@@ -7,6 +7,7 @@ from car_manager import CarManager
 from train_manager import TrainManager
 from spaceship import SpaceshipManager
 from river import RiverManager
+from log_manager import LogManager
 from scoreboard import Scoreboard
 
 
@@ -20,6 +21,7 @@ river_manager = RiverManager()
 car_manager = CarManager()
 train_manager = TrainManager()
 spaceship_manager = SpaceshipManager()
+log_manager = LogManager()
 scoreboard = Scoreboard()
 
 # Listens for any inputs we give
@@ -31,9 +33,12 @@ screen.onkey(player.move_left, "Left")
 screen.onkey(player.move_left, "a")
 screen.onkey(player.move_right, "Right")
 screen.onkey(player.move_right, "d")
+screen.onkeypress(screen.bye, "Escape")
 # TODO: Create player bounds for left/right movement
-# ! Fixed credentials???
 
+
+# River is created outside of the game loop, as it is a static object
+river_manager.__init__()
 
 game_is_on = True
 while game_is_on:
@@ -43,15 +48,16 @@ while game_is_on:
     screen.update()
 
     # Creates the obstacles
-    river_manager.create_river()
     car_manager.create_car()
     train_manager.create_train()
     spaceship_manager.create_ship()
+    log_manager.create_logs()
 
     # Moves the obstacles
     car_manager.move_cars()
     train_manager.move_trains()
     spaceship_manager.move_ship()
+    log_manager.move_logs()
     
     # If someone finishes, reset the level
     if player.crossed_finish():
@@ -77,5 +83,12 @@ while game_is_on:
         if ship.distance(player) < 19:
             game_is_on = False
             scoreboard.game_over()
+
+    # ! NEXT STEP - Creating river collision rules
+    # while river_manager.location 
+    # for log in log_manager.all_logs:
+    #     if not(log.distrance(player) < 19):
+    #         game_is_on = False
+    #         scoreboard.game_over()
 
 screen.exitonclick()

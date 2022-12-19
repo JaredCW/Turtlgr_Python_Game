@@ -4,7 +4,8 @@ import random
 
 # Set some global variables
 # Car color list
-COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
+# 12/19/22 - Removed Blue from color list to use for River.
+COLORS = ["red", "orange", "yellow", "green", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
 
@@ -27,7 +28,10 @@ class CarManager():
             new_car.color(random.choice(COLORS))
             # Generates a new car y-index location, moves to that location
             random_y = random.randint(-240,280)
-            new_car.goto(300, random_y)
+            while (random_y >= 80 and random_y <= 140):
+                random_y = random.randint(-240,280)
+            else:
+                new_car.goto(300, random_y)
             # Adds the new car to the all_cars list
             self.all_cars.append(new_car)
 
