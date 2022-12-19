@@ -6,6 +6,7 @@ from player import Player
 from car_manager import CarManager
 from train_manager import TrainManager
 from spaceship import SpaceshipManager
+from river import RiverManager
 from scoreboard import Scoreboard
 
 
@@ -15,6 +16,7 @@ screen.tracer(0) # has everything not start at 0, 0 and move to its starting pos
 
 # Create our objects to manipulate
 player = Player()
+river_manager = RiverManager()
 car_manager = CarManager()
 train_manager = TrainManager()
 spaceship_manager = SpaceshipManager()
@@ -41,6 +43,7 @@ while game_is_on:
     screen.update()
 
     # Creates the obstacles
+    river_manager.create_river()
     car_manager.create_car()
     train_manager.create_train()
     spaceship_manager.create_ship()
