@@ -22,7 +22,7 @@ class CarManager():
         if random_chance == 1:
             new_car = Turtle("square")
             new_car.penup()
-            new_car.shapesize(stretch_wid=1, stretch_len=2)
+            new_car.shapesize(stretch_wid=1, stretch_len=2) # 20 x 40 px
             # Changes the color of the car to a random choice from our COLORS list
             # * REMINDER TO ME: These random choice generators are awesome.
             new_car.color(random.choice(COLORS))

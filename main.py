@@ -81,14 +81,21 @@ while game_is_on:
 
     # Ends game on collision
     # TODO **PRIORITY**: Collsion needs more work, especially for unique polygons (ie - Spaceship)
+    # * Started new collision rules. This is almost right, but I need to math this out right. Get some graph paper and write this all out in detail, I think.
     for car in car_manager.all_cars:
-        if car.distance(player) < 19:
-            game_is_on = False
-            scoreboard.game_over()
+        x = 0
+        y = 0
+        while x <= 40:
+            while y <= 20:
+                if ((player.xcor() - (car.xcor() + x) >= 20) and (player.ycor() - (car.ycor() + y) >= 20)):
+                    game_is_on = False
+                    scoreboard.game_over()
+                y += 1
+            x += 1
 
     # ! Train is too long; you don't collide with the right end.
     for train in train_manager.all_trains:
-        if train.distance(player) < 19:
+        if (train.distance(player.xcor() + x, player.ycor() + y) < 0):
             game_is_on = False
             scoreboard.game_over()
 
