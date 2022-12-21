@@ -5,8 +5,7 @@ from player import Player
 from car_manager import CarManager, STARTING_MOVE_DISTANCE
 from train_manager import TrainManager, TRAIN_MOVE_DISTANCE
 from spaceship import SpaceshipManager, SPACESHIP_MOVE_DISTANCE
-# TODO - Return to River/Log obstacle. All references are notated out for later.
-# from river import RiverManager
+from river import RiverManager, RIVER_START, RIVER_END
 from log_manager import LogManager
 from scoreboard import Scoreboard
 
@@ -17,12 +16,11 @@ screen.tracer(0) # has everything not start at 0, 0 and move to its starting pos
 
 # Assigns variables to each imported class.
 player = Player()
-# TODO: River/Log
-# river_manager = RiverManager()
+river_manager = RiverManager()
 car_manager = CarManager()
 train_manager = TrainManager()
 spaceship_manager = SpaceshipManager()
-# log_manager = LogManager()
+log_manager = LogManager()
 scoreboard = Scoreboard()
 
 # Listens for any inputs we give
@@ -39,9 +37,8 @@ screen.onkeypress(screen.bye, "Escape")
 # ? Create player bounds for left/right movement?
 
 
-# TODO: River/Log
 # River is created outside of the game loop, as it is a static object
-# river_manager.__init__()
+river_manager.create_river()
 
 game_is_on = True
 while game_is_on:
@@ -57,15 +54,13 @@ while game_is_on:
         train_manager.create_train()
     if scoreboard.level >= 8:
         spaceship_manager.create_ship()
-    # TODO: River/Log
-    # log_manager.create_logs()
+    log_manager.create_logs()
 
     # Moves the obstacles
     car_manager.move_cars()
     train_manager.move_trains()
     spaceship_manager.move_ship()
-    # TODO: River/Log
-    # log_manager.move_logs()
+    log_manager.move_logs()
     
     # If someone finishes, reset the level
     if player.crossed_finish():
@@ -85,7 +80,7 @@ while game_is_on:
             spaceship_manager.speed = SPACESHIP_MOVE_DISTANCE
 
     # Ends game on collision
-    # ? Collsion needs more work, especially for unique polygons (ie - Spaceship)
+    # TODO **PRIORITY**: Collsion needs more work, especially for unique polygons (ie - Spaceship)
     for car in car_manager.all_cars:
         if car.distance(player) < 19:
             game_is_on = False
@@ -102,10 +97,11 @@ while game_is_on:
             game_is_on = False
             scoreboard.game_over()
     
-    # TODO: River/Log Collision Rules (THESE DON'T WORK!!!)
-    # for log in log_manager.all_logs:
-    #     if not(log.distrance(player) < 19):
-    #         game_is_on = False
-    #         scoreboard.game_over()
+    # ! This isn't working right. I'm on the right track (WHILE loop is functional), but this is likely to keep breaking until collision rules are fixed.
+    while (player.ycor() >= (RIVER_START- 10) and player.ycor() <= RIVER_END):
+        for log in log_manager.all_logs:
+            if not(log.distance(player) < 29):
+                game_is_on = False
+                scoreboard.game_over()
 
 screen.exitonclick()

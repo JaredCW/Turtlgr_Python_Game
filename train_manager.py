@@ -1,11 +1,11 @@
 from turtle import Turtle
 import random
 from car_manager import COLORS
+from river import RIVER_START, RIVER_END
 
 
 TRAIN_MOVE_DISTANCE = 20
 TRAIN_MOVE_INCREMENT = 2
-
 
 class TrainManager():
     def __init__(self):
@@ -21,9 +21,8 @@ class TrainManager():
             new_train.color(random.choice(COLORS))
             random_y = random.randint(-240,280)
             # This loop prevents spawn inside the River area.
-            # TODO: River function. This loop is commented out until reimplemented.
-            # while (random_y >= 80 and random_y <= 140):
-            #     random_y = random.randint(-240,280)
+            while (random_y >= (RIVER_START- 10) and random_y <= RIVER_END + 10):
+                random_y = random.randint(-240,280)
             new_train.goto(300, random_y)
             self.all_trains.append(new_train)
 

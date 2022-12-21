@@ -1,5 +1,6 @@
 from turtle import Turtle
 import random
+from river import RIVER_START, RIVER_END
 
 
 # Set some global variables
@@ -28,9 +29,8 @@ class CarManager():
             # Generates a new car y-index location, moves to that location
             random_y = random.randint(-240,280)
             # This loop prevents spawn inside the River area.
-            # TODO: River function. This loop is commented out until reimplemented.
-            # while (random_y >= 80 and random_y <= 140):
-            #     random_y = random.randint(-240,280)
+            while (random_y >= (RIVER_START- 10) and random_y <= RIVER_END + 10):
+                random_y = random.randint(-240,280)
             # Adds the new car to the all_cars list
             new_car.goto(300, random_y)
             self.all_cars.append(new_car)

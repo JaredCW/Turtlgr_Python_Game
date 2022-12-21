@@ -1,8 +1,8 @@
 from turtle import Turtle
 import random
 from car_manager import STARTING_MOVE_DISTANCE
+from river import RIVER_START
 
-# ! Inactive: River/Log. Check main.py for reinstalling
 
 class LogManager():
     def __init__(self):
@@ -16,11 +16,12 @@ class LogManager():
             new_logs.penup()
             new_logs.shapesize(stretch_wid=1, stretch_len= 4)
             new_logs.color("brown")
+            # Randomize the spawning of logs on top & bottom portions of river region
             random_pos = random.randint (1, 2)
             if random_pos == 1:
-                new_logs.goto(300, 90)
+                new_logs.goto(300, RIVER_START - 10)
             else:
-                new_logs.goto(300, 110)
+                new_logs.goto(300, RIVER_START + 10)
             self.all_logs.append(new_logs)
 
     def move_logs(self):
