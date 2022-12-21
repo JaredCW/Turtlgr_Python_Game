@@ -6,7 +6,6 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         print("Creating scoreboard")
-        # Starting level will be one
         self.level = 1
         self.color("black")
         self.penup()

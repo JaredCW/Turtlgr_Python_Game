@@ -4,10 +4,9 @@ import random
 
 # Set some global variables
 # Car color list
-# 12/19/22 - Removed Blue from color list to use for River.
 COLORS = ["red", "orange", "yellow", "green", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 2
 
 
 class CarManager():
@@ -24,15 +23,16 @@ class CarManager():
             new_car.penup()
             new_car.shapesize(stretch_wid=1, stretch_len=2)
             # Changes the color of the car to a random choice from our COLORS list
-            # ! THIS IS A RANDOM CHOICE GENERATOR USE THIS DEAR GOD ASDFJKL!
+            # * REMINDER TO ME: These random choice generators are awesome.
             new_car.color(random.choice(COLORS))
             # Generates a new car y-index location, moves to that location
             random_y = random.randint(-240,280)
-            while (random_y >= 80 and random_y <= 140):
-                random_y = random.randint(-240,280)
-            else:
-                new_car.goto(300, random_y)
+            # This loop prevents spawn inside the River area.
+            # TODO: River function. This loop is commented out until reimplemented.
+            # while (random_y >= 80 and random_y <= 140):
+            #     random_y = random.randint(-240,280)
             # Adds the new car to the all_cars list
+            new_car.goto(300, random_y)
             self.all_cars.append(new_car)
 
     # Set the car movement and speed

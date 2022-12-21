@@ -2,6 +2,8 @@ from turtle import Turtle
 import random
 from car_manager import STARTING_MOVE_DISTANCE
 
+# ! Inactive: River/Log. Check main.py for reinstalling
+
 class LogManager():
     def __init__(self):
         self.all_logs = []
