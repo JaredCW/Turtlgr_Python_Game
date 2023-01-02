@@ -9,6 +9,7 @@ from river import RiverManager, RIVER_START, RIVER_END
 from log_manager import LogManager
 from scoreboard import Scoreboard
 
+FONT = ("Courier", 24, "normal")
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -36,11 +37,26 @@ screen.onkey(player.move_right, "d")
 screen.onkeypress(screen.bye, "Escape")
 # ? Create player bounds for left/right movement?
 
-
-# River is created outside of the game loop, as it is a static object
-river_manager.create_river()
-
 game_is_on = True
+# TODO: Working on Start button prior to start. How to draw a Turtle button that gets removed and starts the game_is_on loop?
+# game_is_on = False
+
+# def button_start(Turtle):
+#     button = Turtle()
+#     button.hideturtle()
+#     button.shape('circle')
+#     button.fillcolor('red')
+#     button.penup()
+#     button.goto(150, 150)
+#     button.write("START", align='center', font=FONT)
+#     button.sety(150 + 20 + 24)
+#     button.onclick(draw_onclick)
+#     button.showturtle()
+
+# Button_Start.__init__(Turtle)
+# if game_is_on == True:
+#     Button_Start.start_game()
+
 while game_is_on:
     # Keeps the program from running too fast
     time.sleep(0.1)
@@ -54,6 +70,7 @@ while game_is_on:
         train_manager.create_train()
     if scoreboard.level >= 8:
         spaceship_manager.create_ship()
+    river_manager.create_river()
     log_manager.create_logs()
 
     # Moves the obstacles
